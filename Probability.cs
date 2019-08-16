@@ -22,7 +22,7 @@ namespace Generic {
 	public class ProbabilityList<T> {
 
 		private Dictionary<T, double> items;
-		public double TotalProbability { get; set; } = 0.0d;
+		public double TotalProbability { get; private set; } = 0.0d;
 
 
 		public ProbabilityList() {
