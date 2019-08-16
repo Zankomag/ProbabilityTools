@@ -33,7 +33,7 @@ namespace Generic {
 		public ProbabilityList(Dictionary<T, double> items) {
 			this.items = items;
 			foreach (var item in items) {
-				TotalProbability += item.Value;
+				AddProbability(item.Value);
 			}
 		}
 
@@ -42,13 +42,19 @@ namespace Generic {
 		/// <param name="item">Item which can be picked</param>
 		/// <param name="probability">chance of <paramref name="item"/> to be picked. Inclusive from 0.01 to 1.0/></param>
 		public void Add(T item, double probability) {
-			TotalProbability += probability;
+			AddProbability(probability);
 			items.Add(item, probability);
 		}
 
 		public void Remove(T item) {
 			TotalProbability -= items[item];
 			items.Remove(item);
+		}
+
+		private void AddProbability(double probability) {
+			if (probability <= 0.0d)
+				throw new ArgumentException("Probability must be greater than 0");
+			TotalProbability += probability;
 		}
 
 		/// <summary>
@@ -74,10 +80,13 @@ namespace Generic {
 					currentItemProbabilityMaxValue = 1.0d;
 
 				if (randomPercent <= currentItemProbabilityMaxValue) {
+					//DEBUG===========================================================
+					Console.WriteLine(item.Key + "\t" + randomPercent + "\t" + currentItemProbabilityMaxValue);
 					result = item.Key;
 					break;
 				}
 			}
+
 			return result;
 		}
 	}
