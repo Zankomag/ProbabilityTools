@@ -10,11 +10,11 @@ namespace Generic {
 			random.Reinitialise(seed);
 		}
 
-		public static T GetRandomItem<T>(IEnumerable<T> array) {
+		public static T GetRandomItem<T>(this IEnumerable<T> array) {
 			return GetRandomItem(array.ToArray());
 		}
 
-		public static T GetRandomItem<T>(T[] array) {
+		public static T GetRandomItem<T>(this T[] array) {
 			int index = random.Next(0, array.Length);
 			return array[index];
 		}
