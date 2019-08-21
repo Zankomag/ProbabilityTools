@@ -22,6 +22,14 @@ namespace Generic {
 		public static T GetRandomItemByProbability<T>(ProbabilityList<T> probabilityList) {
 			return probabilityList.GetRandomItem();
 		}
+		
+		/// <summary>
+		/// Returns true or false using probability
+		/// </summary>
+		/// <param name="probability">number from 0 to 1</param>
+		public static bool ToBoolByProbability(this double probability) {
+			return probability >= random.NextDouble();
+		}
 	}
 
 }
