@@ -1,10 +1,11 @@
 using System.Collections.Generic;
 using System.Linq;
+using System;
 
 namespace Generic {
 	public static class Probability {
 
-		private static readonly FastRandom random = new FastRandom();
+		private static readonly Random random = new Random();
 
 		public static void ReinitialiseRandom(int seed) {
 			random.Reinitialise(seed);
